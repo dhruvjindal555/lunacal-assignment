@@ -4,7 +4,7 @@ import right from '../assets/arrow-right-solid.svg'
 
 function SecondWidget() {
     const [images, setImages] = useState([])
-    const handleImageAdd = (e)=>{
+    const handleImageAdd = (e) => {
         const newImages = Array.from(e.target.files).map(file => URL.createObjectURL(file))
         setImages(images.concat(newImages))
     }
@@ -27,13 +27,16 @@ function SecondWidget() {
                     </div>
                 </div>
                 <div className='flex gap-3 xl:mx-5 lg:mx-3 mx-1 mt-4 h-52 transition-all duration-300 '>
-                    {images&&images.map((image, index) => {
+                    {images.length >=1 ? images.map((image, index) => {
                         return (
                             <div key={index} className='flex justify-center items-center  '>
                                 <img src={image} alt='image' className='transition-all duration-300 bg-gray-400 rounded-xl lg:h-52 h-48 lg:min-w-52 min-w-36' />
                             </div>
                         )
-                    })}
+                    }) :
+                        <div className='text-white'>
+                            No images available
+                        </div>}
                 </div>
             </div>
             <div className='h-1 w-3/4 mx-auto my-1 rounded-xl bg-[#323638]'></div>
